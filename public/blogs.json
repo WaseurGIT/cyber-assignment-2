@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "title": "Understanding SQL Injection Attacks",
+    "description": "SQL Injection is one of the most common web vulnerabilities that allows attackers to manipulate database queries. It occurs when user input is not properly sanitized before being executed. In this blog, we explore how SQL Injection works with real-world examples. You will also learn how hackers exploit login forms and search fields. Finally, we discuss prevention techniques such as prepared statements and input validation.",
+    "image": "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?q=80&w=600&h=400&auto=format&fit=crop",
+    "readTime": "6 min",
+    "author": "Alice Rahman",
+    "authorProfile": "https://i.pravatar.cc/150?img=5",
+    "publishedDate": "2026-02-01",
+    "category": "Web Security"
+  },
+  {
+    "id": 2,
+    "title": "Cross-Site Scripting (XSS) Explained",
+    "description": "Cross-Site Scripting, commonly known as XSS, allows attackers to inject malicious scripts into web pages. These scripts run in the victim's browser and can steal cookies or session data. This blog explains stored, reflected, and DOM-based XSS attacks. You will learn how improper input handling leads to vulnerabilities. We also cover methods like escaping and Content Security Policy to prevent XSS.",
+    "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=600&h=400&auto=format&fit=crop",
+    "readTime": "7 min",
+    "author": "David Khan",
+    "authorProfile": "https://i.pravatar.cc/150?img=12",
+    "publishedDate": "2026-02-05",
+    "category": "Web Security"
+  },
+  {
+    "id": 3,
+    "title": "How Password Hashing Protects Users",
+    "description": "Password hashing is a critical technique used to secure user credentials in modern applications. Instead of storing plain passwords, systems store hashed versions. This blog explains how hashing algorithms like bcrypt work. We also discuss salting and why it adds an extra layer of security. Learn how attackers try to crack hashes and how to defend against them effectively.",
+    "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600&h=400&auto=format&fit=crop",
+    "readTime": "5 min",
+    "author": "Sarah Ahmed",
+    "authorProfile": "https://i.pravatar.cc/150?img=8",
+    "publishedDate": "2026-02-10",
+    "category": "Authentication"
+  },
+  {
+    "id": 4,
+    "title": "Two-Factor Authentication: Why It Matters",
+    "description": "Two-Factor Authentication (2FA) adds an extra layer of security beyond passwords. Even if a password is compromised, attackers cannot access accounts without the second factor. This blog explains different types of 2FA such as SMS, authenticator apps, and hardware tokens. You will learn how to implement 2FA in web applications. We also discuss common mistakes developers make when integrating it.",
+    "image": "https://images.pexels.com/photos/9242835/pexels-photo-9242835.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1",
+    "readTime": "6 min",
+    "author": "Imran Hossain",
+    "authorProfile": "https://i.pravatar.cc/150?img=15",
+    "publishedDate": "2026-02-15",
+    "category": "Authentication"
+  },
+  {
+    "id": 5,
+    "title": "Preventing Cross-Site Request Forgery (CSRF)",
+    "description": "CSRF attacks trick users into performing actions they did not intend on a trusted website. These attacks exploit authenticated sessions and can lead to unauthorized transactions. In this blog, we explain how CSRF works with examples. You will learn about anti-CSRF tokens and same-site cookies. We also discuss best practices for securing web applications against such attacks.",
+    "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600&h=400&auto=format&fit=crop",
+    "readTime": "6 min",
+    "author": "Nusrat Jahan",
+    "authorProfile": "https://i.pravatar.cc/150?img=20",
+    "publishedDate": "2026-02-18",
+    "category": "Web Security"
+  },
+  {
+    "id": 6,
+    "title": "Brute Force Attacks and How to Stop Them",
+    "description": "Brute force attacks involve systematically guessing passwords until the correct one is found. Attackers use automated tools to try thousands of combinations quickly. This blog explains how these attacks work and why weak passwords are dangerous. You will learn about account lockout mechanisms and rate limiting. We also discuss CAPTCHA and monitoring suspicious login attempts.",
+    "image": "https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1",
+    "readTime": "5 min",
+    "author": "Tanvir Islam",
+    "authorProfile": "https://i.pravatar.cc/150?img=25",
+    "publishedDate": "2026-02-20",
+    "category": "Threats"
+  },
+  {
+    "id": 7,
+    "title": "Secure Session Management in Web Apps",
+    "description": "Session management is crucial for maintaining user authentication in web applications. Poor session handling can lead to session hijacking or fixation attacks. This blog covers how sessions work and common vulnerabilities. You will learn how to use secure cookies and proper expiration strategies. We also explain how HTTPS protects session data in transit.",
+    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600&h=400&auto=format&fit=crop",
+    "readTime": "7 min",
+    "author": "Farhan Karim",
+    "authorProfile": "https://i.pravatar.cc/150?img=30",
+    "publishedDate": "2026-02-22",
+    "category": "Web Security"
+  },
+  {
+    "id": 8,
+    "title": "What is Phishing and How to Avoid It",
+    "description": "Phishing is a social engineering attack where attackers trick users into revealing sensitive information. It often involves fake emails or websites that look legitimate. This blog explains different types of phishing attacks including spear phishing. You will learn how to identify suspicious links and emails. We also provide practical tips to stay safe online.",
+    "image": "https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?q=80&w=600&h=400&auto=format&fit=crop",
+    "readTime": "6 min",
+    "author": "Rafiq Hasan",
+    "authorProfile": "https://i.pravatar.cc/150?img=35",
+    "publishedDate": "2026-02-25",
+    "category": "Social Engineering"
+  },
+  {
+    "id": 9,
+    "title": "Introduction to Encryption in Cybersecurity",
+    "description": "Encryption is used to protect data by converting it into unreadable formats. Only authorized parties can decrypt and access the original information. This blog explains symmetric and asymmetric encryption methods. You will learn how encryption is used in HTTPS and secure messaging. We also discuss why encryption is essential for data privacy.",
+    "image": "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?q=80&w=600&h=400&auto=format&fit=crop",
+    "readTime": "6 min",
+    "author": "Sadia Noor",
+    "authorProfile": "https://i.pravatar.cc/150?img=40",
+    "publishedDate": "2026-02-28",
+    "category": "Cryptography"
+  },
+  {
+    "id": 10,
+    "title": "Top 10 Cybersecurity Best Practices for Developers",
+    "description": "Developers play a key role in building secure applications from the ground up. This blog outlines ten essential cybersecurity practices every developer should follow. Topics include input validation, secure authentication, and proper error handling. You will also learn about dependency management and regular updates. Following these practices can significantly reduce security risks in applications.",
+    "image": "https://images.pexels.com/photos/5473337/pexels-photo-5473337.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1",
+    "readTime": "8 min",
+    "author": "Mehedi Hasan",
+    "authorProfile": "https://i.pravatar.cc/150?img=45",
+    "publishedDate": "2026-03-01",
+    "category": "Best Practices"
+  }
+]
