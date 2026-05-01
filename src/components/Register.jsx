@@ -95,21 +95,26 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-orange-100 to-red-200 dark:from-zinc-900 dark:to-black p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 p-4">
       <Link
         to="/"
-        className="absolute top-5 left-5 md:left-10 text-orange-500 hover:underline flex items-center gap-1 font-semibold"
+        className="absolute top-5 left-5 md:left-10 text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 font-semibold"
       >
         <FaArrowLeft />
         Back to Home
       </Link>
-      <div className="w-full max-w-5xl bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
-        <div className="w-full md:w-1/2 hidden md:flex items-center justify-center overflow-hidden">
+      <div className="w-full max-w-5xl bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+        <div className="w-full md:w-1/2 hidden md:flex items-center justify-center overflow-hidden relative">
           <img
-            src="https://i.ibb.co.com/k2tj6ZrT/roasted-beans.jpg"
-            alt="restaurant"
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&h=800&fit=crop"
+            alt="Writing and creating"
+            className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-transparent"></div>
+          <div className="absolute text-center text-white">
+            <h3 className="text-3xl font-bold mb-2">Join Our Community</h3>
+            <p className="text-lg text-blue-100">Create an account to start writing</p>
+          </div>
         </div>
 
         <form
@@ -121,10 +126,10 @@ export default function RegisterPage() {
           </h1>
 
           <p className="text-gray-600 dark:text-gray-300 mb-8 text-sm md:text-base">
-            Join and explore delicious meals
+            Join to read and write amazing blog posts
           </p>
 
-          <div className="flex items-center border-2 border-gray-300 dark:border-zinc-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-zinc-800 hover:border-orange-500 transition-colors">
+          <div className="flex items-center border-2 border-gray-300 dark:border-slate-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-slate-800 hover:border-blue-500 transition-colors">
             <FaUser className="text-gray-500 dark:text-gray-400 mr-3" />
             <input
               type="text"
@@ -135,7 +140,7 @@ export default function RegisterPage() {
             />
           </div>
 
-          <div className="flex items-center border-2 border-gray-300 dark:border-zinc-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-zinc-800 hover:border-orange-500 transition-colors">
+          <div className="flex items-center border-2 border-gray-300 dark:border-slate-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-slate-800 hover:border-blue-500 transition-colors">
             <FaEnvelope className="text-gray-500 dark:text-gray-400 mr-3" />
             <input
               type="email"
@@ -146,7 +151,7 @@ export default function RegisterPage() {
             />
           </div>
 
-          <div className="flex items-center border-2 border-gray-300 dark:border-zinc-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-zinc-800 hover:border-orange-500 transition-colors">
+          <div className="flex items-center border-2 border-gray-300 dark:border-slate-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-slate-800 hover:border-blue-500 transition-colors">
             <FaLock className="text-gray-500 dark:text-gray-400 mr-3" />
             <input
               type={showPassword ? "text" : "password"}
@@ -158,7 +163,7 @@ export default function RegisterPage() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors"
+              className="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors"
             >
               {showPassword ? (
                 <IoIosEye size={20} />
@@ -168,7 +173,7 @@ export default function RegisterPage() {
             </button>
           </div>
 
-          <div className="flex items-center border-2 border-gray-300 dark:border-zinc-700 rounded-lg px-4 py-3 mb-6 bg-gray-50 dark:bg-zinc-800 hover:border-orange-500 transition-colors">
+          <div className="flex items-center border-2 border-gray-300 dark:border-slate-700 rounded-lg px-4 py-3 mb-6 bg-gray-50 dark:bg-slate-800 hover:border-blue-500 transition-colors">
             <FaLock className="text-gray-500 dark:text-gray-400 mr-3" />
             <input
               type={showConfirmPassword ? "text" : "password"}
@@ -180,7 +185,7 @@ export default function RegisterPage() {
             <button
               type="button"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors"
+              className="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors"
             >
               {showConfirmPassword ? (
                 <IoIosEye size={20} />
@@ -192,7 +197,7 @@ export default function RegisterPage() {
 
           <button
             type="submit"
-            className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
           >
             Register
           </button>
@@ -201,7 +206,7 @@ export default function RegisterPage() {
             Already have an account?{" "}
             <Link
               to="/login"
-              className="text-orange-500 cursor-pointer hover:text-orange-600 font-semibold transition-colors"
+              className="text-blue-600 cursor-pointer hover:text-blue-700 font-semibold transition-colors"
             >
               Login
             </Link>

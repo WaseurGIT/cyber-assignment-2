@@ -100,21 +100,26 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-orange-100 to-red-200 dark:from-zinc-900 dark:to-black p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 p-4">
       <Link
         to="/"
-        className="absolute top-5 left-5 md:left-10 text-orange-500 hover:underline flex items-center gap-1 font-semibold"
+        className="absolute top-5 left-5 md:left-10 text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 font-semibold"
       >
         <FaArrowLeft />
         Back to Home
       </Link>
-      <div className="flex w-full max-w-4xl bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden">
-        <div className="w-1/2 hidden md:flex items-center justify-center overflow-hidden">
+      <div className="flex w-full max-w-4xl bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden">
+        <div className="w-1/2 hidden md:flex items-center justify-center overflow-hidden relative">
           <img
-            src="https://i.ibb.co.com/k2tj6ZrT/roasted-beans.jpg"
-            alt="restaurant"
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&h=800&fit=crop"
+            alt="Reading and blogging"
+            className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-transparent"></div>
+          <div className="absolute text-center text-white">
+            <h3 className="text-3xl font-bold mb-2">Share Your Stories</h3>
+            <p className="text-lg text-blue-100">Read and write amazing blog posts</p>
+          </div>
         </div>
 
         <form
@@ -126,10 +131,10 @@ const LoginPage = () => {
           </h2>
 
           <p className="text-gray-600 dark:text-gray-300 mb-8 text-sm md:text-base">
-            Login to explore delicious meals
+            Login to read and share inspiring blog posts
           </p>
 
-          <div className="flex items-center border-2 border-gray-300 dark:border-zinc-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-zinc-800 hover:border-orange-500 transition-colors">
+          <div className="flex items-center border-2 border-gray-300 dark:border-slate-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-slate-800 hover:border-blue-500 transition-colors">
             <FaUser className="text-gray-500 dark:text-gray-400 mr-3" />
             <input
               type="email"
@@ -140,7 +145,7 @@ const LoginPage = () => {
             />
           </div>
 
-          <div className="flex items-center border-2 border-gray-300 dark:border-zinc-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-zinc-800 hover:border-orange-500 transition-colors">
+          <div className="flex items-center border-2 border-gray-300 dark:border-slate-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-slate-800 hover:border-blue-500 transition-colors">
             <FaLock className="text-gray-500 dark:text-gray-400 mr-3" />
             <input
               type={showPassword ? "text" : "password"}
@@ -152,7 +157,7 @@ const LoginPage = () => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors"
+              className="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors"
             >
               {showPassword ? (
                 <IoIosEye size={20} />
@@ -163,7 +168,7 @@ const LoginPage = () => {
           </div>
 
           {step === "otp" && (
-            <div className="flex items-center border-2 border-gray-300 dark:border-zinc-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-zinc-800 hover:border-orange-500 transition-colors">
+            <div className="flex items-center border-2 border-gray-300 dark:border-slate-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-slate-800 hover:border-blue-500 transition-colors">
               <input
                 type="text"
                 name="otp"
@@ -183,25 +188,25 @@ const LoginPage = () => {
             </label>
             <Link
               to="/forgot-password"
-              className="text-orange-500 hover:text-orange-600 font-medium transition-colors"
+              className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
             >
               Forgot password?
             </Link>
           </div>
 
-          <button type="submit" className="...">
+          <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg">
             {step === "password" ? "Login" : "Verify OTP"}
           </button>
 
           <div className="flex items-center my-6">
-            <hr className="flex-1 border-gray-300 dark:border-zinc-700" />
+            <hr className="flex-1 border-gray-300 dark:border-slate-700" />
             <span className="mx-3 text-gray-500 text-sm font-medium">OR</span>
-            <hr className="flex-1 border-gray-300 dark:border-zinc-700" />
+            <hr className="flex-1 border-gray-300 dark:border-slate-700" />
           </div>
 
           <button
             type="button"
-            className="border-2 border-gray-300 dark:border-zinc-700 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 dark:hover:bg-zinc-800 transition duration-200 font-medium"
+            className="border-2 border-gray-300 dark:border-slate-700 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 dark:hover:bg-slate-800 transition duration-200 font-medium"
           >
             <FcGoogle size={20} />
             Continue with Google
@@ -211,7 +216,7 @@ const LoginPage = () => {
             Don&apos;t have an account?{" "}
             <Link
               to="/register"
-              className="text-orange-500 cursor-pointer hover:text-orange-600 font-semibold transition-colors"
+              className="text-blue-600 cursor-pointer hover:text-blue-700 font-semibold transition-colors"
             >
               Sign up
             </Link>

@@ -9,6 +9,8 @@ import Register from "./components/Register";
 import Blogs from "./components/Blogs";
 import BlogDetails from "./components/BlogDetails";
 import AuthProvider from "./components/AuthProvider";
+import ForgotPassword from "./components/forgot-password/forgot-password";
+import ResetPassword from "./components/reset-password/reset-password";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
       {
         path: "/blogs/:id",
         element: <BlogDetails />,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "/reset-password/:token",
+        element: <ResetPassword />,
       },
     ],
   },

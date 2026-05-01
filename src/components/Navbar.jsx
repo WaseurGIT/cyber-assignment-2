@@ -5,7 +5,8 @@ import { useContext } from "react";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
+  
   const handleLogout = async () => {
     try {
       await axiosSecure.post("/logout");
@@ -17,31 +18,46 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50">
-      <div className="px-6 py-4 flex items-center justify-end gap-8">
+    <nav className="sticky top-0 z-50 bg-gradient-to-r from-slate-900 to-slate-800 shadow-lg border-b border-slate-700">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link
           to="/"
-          className="text-white font-semibold text-lg hover:text-blue-400 transition duration-300 flex items-center gap-2"
+          className="text-white font-bold text-xl hover:text-blue-400 transition duration-300 flex items-center gap-2"
         >
-          <span className="text-xl">🏠</span>
-          Home
+          <span className="text-2xl">📝</span>
+          Blogs
         </Link>
 
-        <Link
-          to="/login"
-          className="text-white font-semibold text-lg hover:text-blue-400 transition duration-300 flex items-center gap-2"
-        >
-          <span className="text-xl">🔐</span>
-          Login
-        </Link>
-
-        <div className="flex items-center gap-3 pl-6 border-l border-gray-600">
-          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition cursor-pointer">
-            <span className="text-white text-xl font-bold">U</span>
-          </div>
-          <span className="text-white font-semibold hidden sm:inline">
-            User
-          </span>
+        <div className="flex items-center gap-8">
+          {user ? (
+            <>
+              <div className="flex items-center gap-3 pl-6 border-l border-slate-700">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-white text-sm font-bold">
+                    {user.name?.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                <span className="text-white font-semibold hidden sm:inline">
+                  {user.name}
+                </span>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition duration-300 flex items-center gap-2"
+              >
+                <span>🚪</span>
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition duration-300 flex items-center gap-2"
+            >
+              <span>🔐</span>
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>
