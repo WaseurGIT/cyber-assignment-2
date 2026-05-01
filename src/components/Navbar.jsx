@@ -1,15 +1,36 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axiosSecure from "../axiosSecure";
+import { AuthContext } from "./AuthProvider";
+import { useContext } from "react";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
+  const handleLogout = async () => {
+    try {
+      await axiosSecure.post("/logout");
+      logout();
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   return (
     <nav className="sticky top-0 z-50">
       <div className="px-6 py-4 flex items-center justify-end gap-8">
-        <Link to="/" className="text-white font-semibold text-lg hover:text-blue-400 transition duration-300 flex items-center gap-2">
+        <Link
+          to="/"
+          className="text-white font-semibold text-lg hover:text-blue-400 transition duration-300 flex items-center gap-2"
+        >
           <span className="text-xl">🏠</span>
           Home
         </Link>
 
-        <Link to="/login" className="text-white font-semibold text-lg hover:text-blue-400 transition duration-300 flex items-center gap-2">
+        <Link
+          to="/login"
+          className="text-white font-semibold text-lg hover:text-blue-400 transition duration-300 flex items-center gap-2"
+        >
           <span className="text-xl">🔐</span>
           Login
         </Link>

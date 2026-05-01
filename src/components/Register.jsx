@@ -1,144 +1,213 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { FaUser, FaEnvelope, FaLock, FaArrowLeft } from "react-icons/fa";
+import { IoIosEye, IoIosEyeOff } from "react-icons/io";
+import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
+import axiosSecure from "../axiosSecure";
 
-const Register = () => {
+export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const strongPasswordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  const handleRegisterForm = (e) => {
     e.preventDefault();
-
     const form = e.target;
-    const fullName = form.fullName.value;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
 
-    console.log("Full Name:", fullName);
-    console.log("Email:", email);
-    console.log("Password:", password);
-    console.log("Confirm Password:", confirmPassword);
+    if (!name || !email || !password || !confirmPassword) {
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: "Please fill in all required fields.",
+        confirmButtonText: "OK",
+      });
+      return;
+    } else if (password.length < 8) {
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: "Password must be at least 8 characters long.",
+        confirmButtonText: "OK",
+      });
+      return;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: "Please enter a valid email address.",
+        confirmButtonText: "OK",
+      });
+      return;
+    } else if (password !== confirmPassword) {
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: "Passwords do not match.",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+    if (!strongPasswordRegex.test(password)) {
+      Swal.fire({
+        icon: "error",
+        title: "Weak Password",
+        text: "Password must include uppercase, lowercase, number, and special character.",
+      });
+      return;
+    }
+
+    const formData = {
+      name,
+      email,
+      password,
+      confirmPassword,
+    };
+
+    axiosSecure
+      .post("/users", formData)
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "Registration Successful",
+          text: "You have registered successfully!",
+          confirmButtonText: "OK",
+        });
+        form.reset();
+        navigate("/login");
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Registration Failed",
+          text:
+            err.response?.data?.message ||
+            "An error occurred during registration.",
+          confirmButtonText: "OK",
+        });
+      });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4 py-8">
-      <div className="w-full max-w-md">
-        <div className="bg-slate-800 rounded-2xl shadow-2xl p-8 md:p-10">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-white mb-2">
-              Create Account
-            </h1>
-            <p className="text-gray-400">Join our platform today</p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label className="block text-sm font-semibold text-gray-300 mb-2">
-                Full Name
-              </label>
-              <input
-                type="text"
-                name="fullName"
-                required
-                className="w-full px-4 py-3 bg-slate-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-500"
-                placeholder="John Doe"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-gray-300 mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                required
-                className="w-full px-4 py-3 bg-slate-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-500"
-                placeholder="you@example.com"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-gray-300 mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  required
-                  className="w-full px-4 py-3 bg-slate-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-500 pr-12"
-                  placeholder="••••••••"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="cursor-pointer absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-400 transition"
-                >
-                  {showPassword ? "🔓" : "🔒"}
-                </button>
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-gray-300 mb-2">
-                Confirm Password
-              </label>
-              <div className="relative">
-                <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  name="confirmPassword"
-                  required
-                  className="w-full px-4 py-3 bg-slate-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-500 pr-12"
-                  placeholder="••••••••"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="cursor-pointer absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-400 transition"
-                >
-                  {showConfirmPassword ? "🔓" : "🔒"}
-                </button>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-            //   disabled={loading}
-              className="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg hover:shadow-lg transition duration-300 disabled:opacity-50 mt-6"
-            >
-              {/* {loading ? "Creating Account..." : "Sign Up"} */}
-              Sign Up
-            </button>
-          </form>
-
-          <div className="mt-6 text-center">
-            <p className="text-gray-400">
-              Already have an account?{" "}
-              <Link
-                to="/login"
-                className="text-blue-400 font-semibold hover:text-blue-300 transition"
-              >
-                Sign in
-              </Link>
-            </p>
-          </div>
-
-          <div className="mt-6 border-t border-slate-700 pt-6">
-            <p className="text-xs text-gray-500 text-center">
-              By signing up, you agree to our{" "}
-              <a
-                href="#"
-                className="text-blue-400 hover:text-blue-300 transition"
-              >
-                Terms of Service
-              </a>
-            </p>
-          </div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-orange-100 to-red-200 dark:from-zinc-900 dark:to-black p-4">
+      <Link
+        to="/"
+        className="absolute top-5 left-5 md:left-10 text-orange-500 hover:underline flex items-center gap-1 font-semibold"
+      >
+        <FaArrowLeft />
+        Back to Home
+      </Link>
+      <div className="w-full max-w-5xl bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+        <div className="w-full md:w-1/2 hidden md:flex items-center justify-center overflow-hidden">
+          <img
+            src="https://i.ibb.co.com/k2tj6ZrT/roasted-beans.jpg"
+            alt="restaurant"
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          />
         </div>
+
+        <form
+          onSubmit={handleRegisterForm}
+          className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-10 py-8"
+        >
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">
+            Create Account
+          </h1>
+
+          <p className="text-gray-600 dark:text-gray-300 mb-8 text-sm md:text-base">
+            Join and explore delicious meals
+          </p>
+
+          <div className="flex items-center border-2 border-gray-300 dark:border-zinc-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-zinc-800 hover:border-orange-500 transition-colors">
+            <FaUser className="text-gray-500 dark:text-gray-400 mr-3" />
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              className="w-full bg-transparent outline-none text-gray-700 dark:text-white placeholder-gray-500"
+              required
+            />
+          </div>
+
+          <div className="flex items-center border-2 border-gray-300 dark:border-zinc-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-zinc-800 hover:border-orange-500 transition-colors">
+            <FaEnvelope className="text-gray-500 dark:text-gray-400 mr-3" />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              className="w-full bg-transparent outline-none text-gray-700 dark:text-white placeholder-gray-500"
+              required
+            />
+          </div>
+
+          <div className="flex items-center border-2 border-gray-300 dark:border-zinc-700 rounded-lg px-4 py-3 mb-4 bg-gray-50 dark:bg-zinc-800 hover:border-orange-500 transition-colors">
+            <FaLock className="text-gray-500 dark:text-gray-400 mr-3" />
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              className="w-full bg-transparent outline-none text-gray-700 dark:text-white placeholder-gray-500"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors"
+            >
+              {showPassword ? (
+                <IoIosEye size={20} />
+              ) : (
+                <IoIosEyeOff size={20} />
+              )}
+            </button>
+          </div>
+
+          <div className="flex items-center border-2 border-gray-300 dark:border-zinc-700 rounded-lg px-4 py-3 mb-6 bg-gray-50 dark:bg-zinc-800 hover:border-orange-500 transition-colors">
+            <FaLock className="text-gray-500 dark:text-gray-400 mr-3" />
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              className="w-full bg-transparent outline-none text-gray-700 dark:text-white placeholder-gray-500"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors"
+            >
+              {showConfirmPassword ? (
+                <IoIosEye size={20} />
+              ) : (
+                <IoIosEyeOff size={20} />
+              )}
+            </button>
+          </div>
+
+          <button
+            type="submit"
+            className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+          >
+            Register
+          </button>
+
+          <p className="text-sm text-center mt-6 text-gray-600 dark:text-gray-400">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="text-orange-500 cursor-pointer hover:text-orange-600 font-semibold transition-colors"
+            >
+              Login
+            </Link>
+          </p>
+        </form>
       </div>
     </div>
   );
-};
-
-export default Register;
+}
